@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jride-dispatch-agent"
+version = "0.1.0"
+description = "A Bedrock-powered ride dispatcher agent whose triage policy is decided by Strands Decider 2B"
+requires-python = ">=3.10"
+dependencies = ["strands-agents>=1.0", "boto3", "botocore[crt]"]
+
+[project.optional-dependencies]
+decider = ["strands-decider"]          # only needed on the machine that serves the Decider model
+dev = ["pytest", "fastapi", "uvicorn"]  # tests + the keyword stand-in server
+
+[tool.setuptools]
+packages = ["jride_agent", "decision_patterns", "decision_patterns.policy_triage"]
